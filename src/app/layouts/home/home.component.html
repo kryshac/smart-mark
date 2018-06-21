@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<ng-container *ngIf="bookmarks$ | async as bookmarks">
+  <ng-container *ngFor="let bookmark of bookmarks; let i = index">
+    <div>{{ bookmark.title }}</div>
+  </ng-container>
+</ng-container>
