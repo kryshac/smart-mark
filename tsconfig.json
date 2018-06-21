@@ -1,7 +1,15 @@
 {
   "compileOnSave": false,
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
   "compilerOptions": {
-    "baseUrl": "./",
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noUnusedParameters": true,
+    "strictNullChecks": false,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -9,12 +17,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "lib": [
       "es2017",
-      "dom"
-    ]
+      "dom",
+      "esnext.asynciterable"
+    ],
+    "plugins": [{
+      "name": "tslint-language-service"
+    }],
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@angular/*": ["../node_modules/@angular/*"],
+      "@core/*": ["app/core/*"]
+    }
   }
 }
