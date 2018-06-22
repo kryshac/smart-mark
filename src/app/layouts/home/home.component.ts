@@ -48,4 +48,9 @@ export class HomeComponent implements OnInit {
         },
       );
   }
+
+  public getColor(): string {
+    const color = ['#DDBDF1'];
+    return color[Math.floor(Math.random() * color.length)];
+  }
 }
