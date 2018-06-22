@@ -1,8 +1,10 @@
 .sidenav-container {
   height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+  background-color: #1d1f2e;
+  color: #fff;
+  .sidenav {
+    width: 200px;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+    background-color: #342f5b;
+  }
 }

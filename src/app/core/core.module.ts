@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GraphQLModule } from '@app/core/module';
 import { MaterialModule } from '@app/core/shared';
 import { StoreCoreModule } from '@app/core/store/store.module';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, GraphQLModule, StoreCoreModule.forRoot()],
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    GraphQLModule,
+    StoreCoreModule.forRoot(),
+  ],
   declarations: [],
-  exports: [CommonModule, MaterialModule],
+  exports: [CommonModule, BrowserAnimationsModule, MaterialModule],
   providers: [],
 })
 export class CoreModule {
