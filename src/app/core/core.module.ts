@@ -1,14 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GraphQLModule } from './module';
+import { BreakpointsService } from './services/breakpoints.service';
 import { MaterialModule, SharedModule } from './shared';
 import { StoreCoreModule } from './store/store.module';
 
 @NgModule({
-  imports: [MaterialModule, GraphQLModule, StoreCoreModule.forRoot(), SharedModule],
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    GraphQLModule,
+    StoreCoreModule.forRoot(),
+    SharedModule,
+  ],
   declarations: [],
-  exports: [MaterialModule],
-  providers: [],
+  exports: [CommonModule, BrowserAnimationsModule, MaterialModule],
+  providers: [BreakpointsService],
 })
 export class CoreModule {
   public static forRoot(configuredProviders: any[] = []): ModuleWithProviders {
