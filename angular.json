@@ -47,7 +47,30 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [{
+                  "type": "all",
+                  "baseline": "800kb",
+                  "warning": "1kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "main",
+                  "baseline": "800kb",
+                  "maximumWarning": "100kb",
+                  "minimumWarning": "1kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "polyfills",
+                  "baseline": "100kb",
+                  "warning": "2%"
+                },
+                {
+                  "type": "any",
+                  "maximumWarning": "900kb"
+                }
+              ]
             }
           }
         },
