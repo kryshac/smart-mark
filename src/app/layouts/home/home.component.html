@@ -1,7 +1,7 @@
 <ng-container *ngIf="bookmarks$ | async as bookmarks">
-  <mat-grid-list [cols]="cols | async" rowHeight="100px">
-    <mat-grid-tile *ngFor="let bookmark of bookmarks" gutterSize="rem" colspan="1" rowspan="1" [style.background]="getColor()">
-      {{ bookmark.title }}
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div [@listAnimation]="bookmarks.length" fxLayout="row wrap" fxLayoutAlign="center">
+    <ng-container *ngFor="let bookmark of bookmarks">
+      <app-card-bookmark class="card-bookmark" [icon]="bookmark.icon" [title]="bookmark.title" [url]="bookmark.url"></app-card-bookmark>
+    </ng-container>
+  </div>
 </ng-container>
