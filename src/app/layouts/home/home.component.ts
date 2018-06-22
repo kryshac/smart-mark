@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { BreakpointsService } from '@app/core/services/breakpoints.service';
 import * as GraphQl from '@app/core/services/graphql';
 import { IBookmark } from '@app/core/shared/models';
 import { IState } from '@app/core/store';
@@ -15,8 +16,15 @@ import { ApolloQueryResult } from 'apollo-client';
 })
 export class HomeComponent implements OnInit {
   public bookmarks$: Observable<IBookmark[]>;
+  public cols: Observable<number>;
 
-  constructor(private _store: Store<IState>, private _apollo: Apollo) {}
+  constructor(
+    private _store: Store<IState>,
+    private _apollo: Apollo,
+    private _breakpoints: BreakpointsService,
+  ) {
+    this.cols = this._breakpoints.cols;
+  }
 
   public ngOnInit() {
     this._store.dispatch(new StoreBookmark.Load());

@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { GraphQLModule } from '@app/core/module';
-import { MaterialModule } from '@app/core/shared';
-import { StoreCoreModule } from '@app/core/store/store.module';
+import { GraphQLModule } from './module';
+import { BreakpointsService } from './services/breakpoints.service';
+import { MaterialModule, SharedModule } from './shared';
+import { StoreCoreModule } from './store/store.module';
 
 @NgModule({
   imports: [
@@ -13,10 +14,11 @@ import { StoreCoreModule } from '@app/core/store/store.module';
     MaterialModule,
     GraphQLModule,
     StoreCoreModule.forRoot(),
+    SharedModule,
   ],
   declarations: [],
   exports: [CommonModule, BrowserAnimationsModule, MaterialModule],
-  providers: [],
+  providers: [BreakpointsService],
 })
 export class CoreModule {
   public static forRoot(configuredProviders: any[] = []): ModuleWithProviders {

@@ -1,10 +1,10 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { split } from 'apollo-link';
+import { ApolloLink, concat, split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
@@ -13,12 +13,10 @@ import { getMainDefinition } from 'apollo-utilities';
 })
 export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
-    // Create an http link:
     const http = httpLink.create({
       uri: 'https://api.graph.cool/simple/v1/cjim08vux2t0t0154qxci1vm1',
     });
 
-    // Create a WebSocket link:
     const ws = new WebSocketLink({
       uri: `wss://subscriptions.graph.cool/v1/cjim08vux2t0t0154qxci1vm1`,
       options: {
@@ -26,12 +24,8 @@ export class GraphQLModule {
       },
     });
 
-    // using the ability to split links, you can send data to each link
-    // depending on what kind of operation is being sent
     const link = split(
-      // split based on operation type
       ({ query }) => {
-        // const { kind, operation } = getMainDefinition(query);
         const definition = getMainDefinition(query);
         return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
       },
@@ -39,8 +33,16 @@ export class GraphQLModule {
       http,
     );
 
+    const authMiddleware = new ApolloLink((operation, forward) => {
+      operation.setContext({
+        headers: new HttpHeaders().set('Authorization', localStorage.getItem('token') || null),
+      });
+
+      return forward(operation);
+    });
+
     apollo.create({
-      link,
+      link: concat(authMiddleware, link),
       cache: new InMemoryCache(),
     });
   }

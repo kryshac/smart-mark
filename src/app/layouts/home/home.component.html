@@ -1,5 +1,5 @@
 <ng-container *ngIf="bookmarks$ | async as bookmarks">
-  <mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-list [cols]="cols | async" rowHeight="100px">
     <mat-grid-tile *ngFor="let bookmark of bookmarks" gutterSize="rem" colspan="1" rowspan="1" [style.background]="getColor()">
       {{ bookmark.title }}
     </mat-grid-tile>
