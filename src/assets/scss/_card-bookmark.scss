@@ -1,0 +1,62 @@
+.card-bookmark {
+  padding: 6px;
+  .mat-card {
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #2e2d4a;
+    max-width: 388px;
+    .mat-card-header {
+      padding: 14px;
+      background-color: #323153;
+      color: #09d2e5;
+      box-shadow: 0 3px 16px rgba(29, 31, 46, 0.5);
+      .mat-card-avatar {
+        border-radius: 2px;
+        width: 22px;
+        height: 22px;
+      }
+      .mat-card-header-text {
+        .mat-card-title {
+          margin-bottom: 0;
+        }
+      }
+      .card-bookmark-title {
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        max-width: 260px;
+      }
+      .edit-container {
+        color: #c388ff;
+        .mat-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 16px;
+        }
+        .mat-icon:last-child {
+          margin-left: 5px;
+        }
+      }
+    }
+    .mat-card-content {
+      padding: 15px;
+      margin-bottom: 0;
+      color: #fff;
+    }
+    .mat-card-actions {
+      margin: 0;
+      padding: 10px;
+      .mat-chip {
+        padding: 7px 14px;
+        line-height: 13px;
+        background-color: transparent;
+        color: #8276bb;
+        border: 1px solid #4f4483;
+      }
+    }
+    .mat-card-actions:last-child {
+      margin-bottom: 10px;
+    }
+  }
+}

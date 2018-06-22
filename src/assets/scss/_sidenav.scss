@@ -3,8 +3,27 @@
   background-color: #1d1f2e;
   color: #fff;
   .sidenav {
-    width: 200px;
-    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+    width: 250px;
     background-color: #342f5b;
+    .navbar-column {
+      color: #fff;
+      padding: 10px;
+      .navbar-search-tag {
+        width: 100%;
+      }
+      .mat-chip {
+        background-color: #4f4483;
+        color: #fff;
+        padding: 7px 14px;
+        line-height: 13px;
+        border: 1px solid #4f4483;
+      }
+    }
+  }
+  .navbar {
+    height: 75px;
+  }
+  .contaier {
+    padding: 20px;
   }
 }

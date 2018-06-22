@@ -2,8 +2,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
-  MatGridListModule,
+  MatCardModule,
+  MatChipsModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatSidenavModule,
   MatToolbarModule,
@@ -17,7 +20,10 @@ import {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatGridListModule,
+    MatCardModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     LayoutModule,
@@ -26,7 +32,10 @@ import {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatGridListModule,
+    MatCardModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [],
 })
