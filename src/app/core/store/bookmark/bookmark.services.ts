@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 
-import { IBookmark } from '@app/core';
 import * as GraphQl from '@app/core/services/graphql';
+import { IBookmark } from '@app/shared/models';
 
 @Injectable()
 export class ServiceBookmark {
@@ -23,6 +23,7 @@ export class ServiceBookmark {
             observer.complete();
           },
           (err) => {
+            console.log(err);
             observer.error(err);
           },
         );

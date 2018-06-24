@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import * as GraphQl from '@app/core/services/graphql';
-import { IBookmark } from '@app/core/shared/models';
 import { IState } from '@app/core/store';
 import * as StoreBookmark from '@app/core/store/bookmark';
+import { IBookmark } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 import { Apollo } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';

@@ -5,7 +5,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Action } from '@ngrx/store';
 
-import { IBookmark } from '@app/core';
+import { IBookmark } from '@app/shared/models';
 import * as actions from './bookmark.actions';
 import { ServiceBookmark } from './bookmark.services';
 
