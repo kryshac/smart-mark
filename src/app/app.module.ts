@@ -5,12 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@app/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddBookmarkComponent, NavbarColumnComponent } from './components';
+import { AddBookmarkButtonComponent, NavbarColumnComponent } from './components';
+import { AddBookmarkComponent } from './components/add-bookmark/add-bookmark.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarColumnComponent, AddBookmarkComponent],
+  declarations: [
+    AppComponent,
+    NavbarColumnComponent,
+    AddBookmarkButtonComponent,
+    AddBookmarkComponent,
+  ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [AddBookmarkComponent],
 })
 export class AppModule {}

@@ -1,2 +1,2 @@
 export * from './navbar-column/navbar-column.component';
-export * from './add-bookmark/add-bookmark.component';
+export * from './add-bookmark-button/add-bookmark-button.component';
