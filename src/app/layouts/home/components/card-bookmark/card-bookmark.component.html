@@ -17,15 +17,9 @@
   </mat-card-content>
   <mat-card-actions>
     <mat-chip-list>
-      <mat-chip>Papadum</mat-chip>
-      <mat-chip>Naan</mat-chip>
-      <mat-chip>Dal</mat-chip>
-      <mat-chip>Papadum</mat-chip>
-      <mat-chip>Naan</mat-chip>
-      <mat-chip>Dal</mat-chip>
-      <mat-chip>Papadum</mat-chip>
-      <mat-chip>Naan</mat-chip>
-      <mat-chip>Dal</mat-chip>
+      <ng-container *ngFor="let tag of tags">
+        <mat-chip>{{ tag.title }}</mat-chip>
+      </ng-container>
     </mat-chip-list>
   </mat-card-actions>
 </mat-card>

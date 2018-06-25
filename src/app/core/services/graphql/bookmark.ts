@@ -1,12 +1,15 @@
 import gql from 'graphql-tag';
 
-export const getAllBookmarks = gql`
+export const queryAllBookmarks = gql`
   query allBookmarks {
     allBookmarks {
       id
       title
       url
       icon
+      tags {
+        id
+      }
     }
   }
 `;
@@ -22,13 +25,16 @@ export const getBookmark = gql`
   }
 `;
 
-export const createBookmark = gql`
-  mutation createBookmark($icon: String, $title: String!, $url: String) {
-    createBookmark(icon: $icon, title: $title, url: $url) {
+export const mutationCreateBookmark = gql`
+  mutation createBookmark($newBookmarkInput: newBookmarkInput) {
+    createBookmark(input: $newBookmarkInput) {
       id
       title
       url
       icon
+      tags {
+        id
+      }
     }
   }
 `;
@@ -61,16 +67,14 @@ export const bookmarkCreated = gql`
   }
 `;
 
-export const bookmarkMutation = gql`
-  subscription BookmarkMutations {
-    Bookmark {
-      node {
-        id
-        icon
-        title
-        url
-      }
-      previousValues {
+export const subscriptionBookmarkCreated = gql`
+  subscription bookmarkCreated {
+    bookmarkCreated {
+      id
+      title
+      url
+      icon
+      tags {
         id
       }
     }

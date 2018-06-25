@@ -8,8 +8,8 @@ export const reducers: ActionReducerMap<IState> = {};
 // console.log all actions
 export function logger(reducer: ActionReducer<IState>): ActionReducer<IState> {
   return (state: IState, action: any): IState => {
-    console.log('state', state);
-    console.log('action', action);
+    // console.log('state', state);
+    // console.log('action', action);
 
     return reducer(state, action);
   };

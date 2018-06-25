@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { Apollo, ApolloModule } from 'apollo-angular';
@@ -17,11 +17,12 @@ export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
-        graphQLErrors.map(({ message, locations, path }) =>
-          console.log(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-          ),
-        );
+        graphQLErrors.map(({ message, locations, path }) => {
+          console.log('[GraphQL error]:');
+          console.log('Message: ', message);
+          console.log('Location: ', locations);
+          console.log('Path: ' + path);
+        });
       }
       if (networkError) {
         console.log(`[Network error]: ${networkError}`);
@@ -29,11 +30,11 @@ export class GraphQLModule {
     });
 
     const http = httpLink.create({
-      uri: 'https://api.graph.cool/simple/v1/cjim08vux2t0t0154qxci1vm1',
+      uri: 'http://192.168.84.208:8000/graphql',
     });
 
     const ws = new WebSocketLink({
-      uri: `wss://subscriptions.graph.cool/v1/cjim08vux2t0t0154qxci1vm1`,
+      uri: `ws://192.168.84.208:8001/subscriptions`,
       options: {
         reconnect: false,
       },
@@ -54,7 +55,11 @@ export class GraphQLModule {
       if (!token) {
         return {};
       }
-      return { headers: headers.append('Authorization', `Bearer ${token}`) };
+      return {
+        ...(headers
+          ? { headers: headers.append('Authorization', `Bearer ${token}`) }
+          : { headers: new HttpHeaders().set('Authorization', `Bearer ${token}`) }),
+      };
     });
 
     apollo.create({

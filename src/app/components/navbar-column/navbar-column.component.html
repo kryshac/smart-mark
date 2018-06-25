@@ -3,14 +3,10 @@
     <input matInput placeholder="Search tag">
   </mat-form-field>
   <mat-chip-list>
-    <mat-chip>Dal</mat-chip>
-    <mat-chip>Papadum</mat-chip>
-    <mat-chip>Naan</mat-chip>
-    <mat-chip>Papadum</mat-chip>
-    <mat-chip>Dal</mat-chip>
-    <mat-chip>Naan</mat-chip>
-    <mat-chip>Naan</mat-chip>
-    <mat-chip>Papadum</mat-chip>
-    <mat-chip>Dal</mat-chip>
+    <ng-container *ngIf="tags$ | async as tags">
+      <ng-container *ngFor="let tag of tags">
+        <mat-chip>{{ tag.title }}</mat-chip>
+      </ng-container>
+    </ng-container>
   </mat-chip-list>
 </div>

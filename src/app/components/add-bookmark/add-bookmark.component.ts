@@ -35,7 +35,8 @@ export class AddBookmarkComponent {
     const bookmark = this.form;
 
     if (bookmark.valid) {
-      this.store.dispatch(new StoreBookmark.Add(bookmark.value));
+      const newBookmark = { ...bookmark.value, tags: ['tag1', 'tag2'] };
+      this.store.dispatch(new StoreBookmark.Add(newBookmark));
       this.actions
         .pipe(
           tap((action: Action) => {

@@ -5,7 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 
 import * as GraphQl from '@app/core/services/graphql';
-import { IBookmark } from '@app/shared/models';
+import { IBookmark, INewBookmark } from '@app/shared/models';
 
 @Injectable()
 export class ServiceBookmark {
@@ -15,7 +15,7 @@ export class ServiceBookmark {
     return new Observable((observer) => {
       return this._apollo
         .query({
-          query: GraphQl.getAllBookmarks,
+          query: GraphQl.queryAllBookmarks,
         })
         .subscribe(
           (queryResult: ApolloQueryResult<{ allBookmarks: IBookmark[] }>) => {
@@ -23,19 +23,18 @@ export class ServiceBookmark {
             observer.complete();
           },
           (err) => {
-            console.log(err);
             observer.error(err);
           },
         );
     });
   }
 
-  public add(bookmark: any): Observable<IBookmark> {
+  public add(newBookmarkInput: INewBookmark): Observable<IBookmark> {
     return new Observable((observer) => {
       return this._apollo
         .mutate({
-          mutation: GraphQl.createBookmark,
-          variables: { ...bookmark },
+          mutation: GraphQl.mutationCreateBookmark,
+          variables: { newBookmarkInput },
         })
         .subscribe(
           (queryResult: ApolloQueryResult<{ createBookmark: IBookmark }>) => {

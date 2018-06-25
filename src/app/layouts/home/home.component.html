@@ -1,7 +1,8 @@
 <ng-container *ngIf="bookmarks$ | async as bookmarks">
   <div [@listAnimation]="bookmarks.length" fxLayout="row wrap" fxLayoutAlign="center">
     <ng-container *ngFor="let bookmark of bookmarks">
-      <app-card-bookmark class="card-bookmark" [icon]="bookmark.icon" [title]="bookmark.title" [url]="bookmark.url"></app-card-bookmark>
+      <app-card-bookmark class="card-bookmark" [icon]="bookmark.icon" [title]="bookmark.title" [url]="bookmark.url"
+        [tags]="bookmark.tags"></app-card-bookmark>
     </ng-container>
   </div>
 </ng-container>

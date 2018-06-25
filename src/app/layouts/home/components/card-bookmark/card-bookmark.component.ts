@@ -10,6 +10,7 @@ export class CardBookmarkComponent implements OnInit {
   @Input() public title: string;
   @Input() public icon: string;
   @Input() public url: string;
+  @Input() public tags: any;
   // constructor() {}
 
   public ngOnInit() {
