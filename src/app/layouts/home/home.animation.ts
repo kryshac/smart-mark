@@ -6,6 +6,6 @@ export function feedAnimationFn(fromState: string | number, toState: string | nu
 
 export const feedAnimation = trigger('listAnimation', [
   transition(feedAnimationFn, [
-    query('@slideIn', [stagger(25, [animateChild()])], { optional: true }),
+    query('@slideIn', [stagger(50, [animateChild()])], { optional: true }),
   ]),
 ]);
