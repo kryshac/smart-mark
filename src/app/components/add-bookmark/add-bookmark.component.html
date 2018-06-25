@@ -5,6 +5,7 @@
         <mat-icon fxLayoutGap>note_add</mat-icon>
         <div fxLayoutGap fxFlexOffset="20px" class="add-bookmark-title">Add Bookmark</div>
       </mat-card-header>
+      <mat-progress-bar *ngIf="loading" class="add-bookmark-progress" mode="indeterminate"></mat-progress-bar>
       <mat-card-content fxLayout="column">
         <mat-form-field fxFlex>
           <input matInput placeholder="Title" formControlName="title">
