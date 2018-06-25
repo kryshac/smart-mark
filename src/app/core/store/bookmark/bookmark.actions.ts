@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { IBookmark } from '@app/core';
+import { IBookmark } from '@app/shared/models';
 
 export enum Actions {
   Load = '[Bookmark] Load',

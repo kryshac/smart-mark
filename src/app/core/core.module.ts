@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MaterialModule, SharedModule } from '@app/shared/module';
 import { GraphQLModule } from './module';
-import { MaterialModule, SharedModule } from './shared';
 import { StoreCoreModule } from './store/store.module';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    StoreCoreModule.forRoot(),
     MaterialModule,
     GraphQLModule,
-    StoreCoreModule.forRoot(),
     SharedModule,
   ],
   declarations: [],

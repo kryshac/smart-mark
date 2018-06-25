@@ -1,10 +1,12 @@
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink, concat, split } from 'apollo-link';
+import { split } from 'apollo-link';
+import { setContext } from 'apollo-link-context';
+import { onError } from 'apollo-link-error';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
@@ -13,6 +15,19 @@ import { getMainDefinition } from 'apollo-utilities';
 })
 export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
+    const errorLink = onError(({ graphQLErrors, networkError }) => {
+      if (graphQLErrors) {
+        graphQLErrors.map(({ message, locations, path }) =>
+          console.log(
+            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+          ),
+        );
+      }
+      if (networkError) {
+        console.log(`[Network error]: ${networkError}`);
+      }
+    });
+
     const http = httpLink.create({
       uri: 'https://api.graph.cool/simple/v1/cjim08vux2t0t0154qxci1vm1',
     });
@@ -33,16 +48,17 @@ export class GraphQLModule {
       http,
     );
 
-    const authMiddleware = new ApolloLink((operation, forward) => {
-      operation.setContext({
-        headers: new HttpHeaders().set('Authorization', localStorage.getItem('token') || null),
-      });
+    const auth = setContext((_, { headers }) => {
+      const token = localStorage.getItem('token');
 
-      return forward(operation);
+      if (!token) {
+        return {};
+      }
+      return { headers: headers.append('Authorization', `Bearer ${token}`) };
     });
 
     apollo.create({
-      link: concat(authMiddleware, link),
+      link: auth.concat(errorLink.concat(link)),
       cache: new InMemoryCache(),
     });
   }

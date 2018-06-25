@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { IBookmark } from '@app/core';
+import { IBookmark } from '@app/shared/models';
 import * as actions from './bookmark.actions';
 
 export interface IState extends EntityState<IBookmark> {

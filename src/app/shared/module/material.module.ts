@@ -4,6 +4,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatChipsModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -24,6 +25,7 @@ import {
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
   ],
   exports: [
     LayoutModule,
@@ -36,6 +38,7 @@ import {
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
   ],
   declarations: [],
 })
