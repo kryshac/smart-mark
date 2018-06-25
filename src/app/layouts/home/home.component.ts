@@ -42,27 +42,12 @@ export class HomeComponent implements OnInit {
       .subscribe({
         query: GraphQl.subscriptionBookmarkCreated,
       })
-      .subscribe(
-        (
-          queryResult: ApolloQueryResult<{
-            Bookmark: {
-              node: IBookmark;
-              previousValues: { id: string };
-            };
-          }>,
-        ) => {
-          console.log(queryResult);
-          // if (queryResult.data.Bookmark.node) {
-          //   this._store.dispatch(new StoreBookmark.
-          // SubscriptionAdd(queryResult.data.Bookmark.node));
-          // } else {
-          //   this._store.dispatch(
-          //     new StoreBookmark.SubscriptionRemove({
-          //       id: queryResult.data.Bookmark.previousValues.id,
-          //     }),
-          //   );
-          // }
-        },
-      );
+      .subscribe((queryResult: ApolloQueryResult<{ bookmarkCreated: IBookmark }>) => {
+        this._store.dispatch(new StoreBookmark.SubscriptionAdd(queryResult.data.bookmarkCreated));
+      });
+  }
+
+  public trackByFn(index) {
+    return index;
   }
 }
