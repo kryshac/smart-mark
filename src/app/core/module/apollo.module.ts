@@ -30,11 +30,11 @@ export class GraphQLModule {
     });
 
     const http = httpLink.create({
-      uri: 'http://192.168.84.208:8000/graphql',
+      uri: 'http://0.0.0.0:8000/graphql',
     });
 
     const ws = new WebSocketLink({
-      uri: `ws://192.168.84.208:8001/subscriptions`,
+      uri: `ws://0.0.0.0:8001/subscriptions`,
       options: {
         reconnect: false,
       },
