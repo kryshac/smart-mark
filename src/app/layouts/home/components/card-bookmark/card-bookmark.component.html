@@ -1,11 +1,21 @@
 <mat-card @slideIn class="card-bookmark">
   <mat-card-header fxLayout="row">
-    <img mat-card-avatar [src]="icon" class="card-bookmark-icon">
-    <div class="card-bookmark-title">{{ url }}</div>
+    <img mat-card-avatar [src]="bookmark.icon" class="card-bookmark-icon">
+    <div class="card-bookmark-title">{{ bookmark.url }}</div>
     <div fxFlex></div>
     <div class="edit-container">
-      <mat-icon>edit</mat-icon>
-      <mat-icon>delete</mat-icon>
+      <button mat-button class="edit-button">
+        <mat-icon>edit</mat-icon>
+        <div class="load-spiner">
+          <mat-spinner diameter="22"></mat-spinner>
+        </div>
+      </button>
+      <button #button (click)="removeBookmark(bookmark.id, button)" mat-button class="edit-button">
+        <mat-icon>delete</mat-icon>
+        <div class="load-spiner">
+          <mat-spinner diameter="22"></mat-spinner>
+        </div>
+      </button>
     </div>
   </mat-card-header>
   <mat-card-content>
@@ -17,7 +27,7 @@
   </mat-card-content>
   <mat-card-actions>
     <mat-chip-list>
-      <ng-container *ngFor="let tag of tags">
+      <ng-container *ngFor="let tag of bookmark.tags">
         <mat-chip>{{ tag.title }}</mat-chip>
       </ng-container>
     </mat-chip-list>
