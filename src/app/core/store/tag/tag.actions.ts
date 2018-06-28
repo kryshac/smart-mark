@@ -1,22 +1,22 @@
 import { Action } from '@ngrx/store';
 
-import { IBookmark, INewBookmark } from '@app/shared/models';
+import { ITag } from '@app/shared/models';
 
 export enum Actions {
-  Load = '[Bookmark] Load',
-  LoadSuccess = '[Bookmark] Load Success',
-  LoadFail = '[Bookmark] Load Fail',
-  Add = '[Bookmark] Add',
-  AddSuccess = '[Bookmark] Add Success',
-  AddFail = '[Bookmark] Add Fail',
-  Remove = '[Bookmark] Remove',
-  RemoveSuccess = '[Bookmark] Remove Success',
-  RemoveFail = '[Bookmark] Remove Fail',
-  Update = '[Bookmark] Update',
-  UpdateSuccess = '[Bookmark] Update Success',
-  UpdateFail = '[Bookmark] Update Fail',
-  SubscriptionAdd = '[Bookmark] Subscription Add',
-  SubscriptionRemove = '[Bookmark] Subscription Remove',
+  Load = '[Tag] Load',
+  LoadSuccess = '[Tag] Load Success',
+  LoadFail = '[Tag] Load Fail',
+  Add = '[Tag] Add',
+  AddSuccess = '[Tag] Add Success',
+  AddFail = '[Tag] Add Fail',
+  Remove = '[Tag] Remove',
+  RemoveSuccess = '[Tag] Remove Success',
+  RemoveFail = '[Tag] Remove Fail',
+  Update = '[Tag] Update',
+  UpdateSuccess = '[Tag] Update Success',
+  UpdateFail = '[Tag] Update Fail',
+  SubscriptionAdd = '[Tag] Subscription Add',
+  SubscriptionRemove = '[Tag] Subscription Remove',
 }
 
 export class Load implements Action {
@@ -28,7 +28,7 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
   public readonly type = Actions.LoadSuccess;
 
-  constructor(public payload?: IBookmark[]) {}
+  constructor(public payload?: ITag[]) {}
 }
 
 export class LoadFail implements Action {
@@ -39,12 +39,12 @@ export class LoadFail implements Action {
 
 export class Add implements Action {
   public readonly type = Actions.Add;
-  constructor(public payload: INewBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class AddSuccess implements Action {
   public readonly type = Actions.AddSuccess;
-  constructor(public payload: IBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class AddFail implements Action {
@@ -56,13 +56,13 @@ export class AddFail implements Action {
 export class Remove implements Action {
   public readonly type = Actions.Remove;
 
-  constructor(public payload: Partial<IBookmark>) {}
+  constructor(public payload: Partial<ITag>) {}
 }
 
 export class RemoveSuccess implements Action {
   public readonly type = Actions.RemoveSuccess;
 
-  constructor(public payload: IBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class RemoveFail implements Action {
@@ -74,13 +74,13 @@ export class RemoveFail implements Action {
 export class Update implements Action {
   public readonly type = Actions.Update;
 
-  constructor(public payload: IBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class UpdateSuccess implements Action {
   public readonly type = Actions.UpdateSuccess;
 
-  constructor(public payload: IBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class UpdateFail implements Action {
@@ -92,13 +92,13 @@ export class UpdateFail implements Action {
 export class SubscriptionAdd implements Action {
   public readonly type = Actions.SubscriptionAdd;
 
-  constructor(public payload: IBookmark) {}
+  constructor(public payload: ITag) {}
 }
 
 export class SubscriptionRemove implements Action {
   public readonly type = Actions.SubscriptionRemove;
 
-  constructor(public payload: Partial<IBookmark>) {}
+  constructor(public payload: Partial<ITag>) {}
 }
 
 export type ActionsUnion =

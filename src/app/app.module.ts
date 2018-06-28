@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddBookmarkButtonComponent, NavbarColumnComponent } from './components';
 import { AddBookmarkComponent } from './components/add-bookmark/add-bookmark.component';
+import { DialogAlertComponent } from './components/dialog-alert/dialog-alert.component';
 
 @NgModule({
   declarations: [
@@ -14,10 +15,11 @@ import { AddBookmarkComponent } from './components/add-bookmark/add-bookmark.com
     NavbarColumnComponent,
     AddBookmarkButtonComponent,
     AddBookmarkComponent,
+    DialogAlertComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddBookmarkComponent],
+  entryComponents: [AddBookmarkComponent, DialogAlertComponent],
 })
 export class AppModule {}

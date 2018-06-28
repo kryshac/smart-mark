@@ -9,24 +9,14 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatToolbarModule,
 } from '@angular/material';
 
 @NgModule({
-  imports: [
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    MatChipsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-  ],
+  imports: [],
   exports: [
     LayoutModule,
     MatToolbarModule,
@@ -39,6 +29,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [],
 })

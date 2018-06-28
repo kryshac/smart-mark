@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  host: 'http://localhost:8000/graphql',
+  hostWs: 'ws://localhost:8001/subscriptions',
   production: false,
 };
 

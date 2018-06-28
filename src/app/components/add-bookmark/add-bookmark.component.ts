@@ -13,6 +13,7 @@ import { Action, ActionsSubject, Store } from '@ngrx/store';
 })
 export class AddBookmarkComponent {
   public form: FormGroup;
+  public loading: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<AddBookmarkComponent>,
@@ -25,6 +26,7 @@ export class AddBookmarkComponent {
       title: this.fb.control('', [Validators.required]),
       url: this.fb.control('', [Validators.required]),
     });
+    this.loading = false;
   }
 
   public cancelAction(): void {
@@ -35,7 +37,9 @@ export class AddBookmarkComponent {
     const bookmark = this.form;
 
     if (bookmark.valid) {
-      this.store.dispatch(new StoreBookmark.Add(bookmark.value));
+      this.loading = true;
+      const newBookmark = { ...bookmark.value, tags: ['tag1', 'tag2'] };
+      this.store.dispatch(new StoreBookmark.Add(newBookmark));
       this.actions
         .pipe(
           tap((action: Action) => {
