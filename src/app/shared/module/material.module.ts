@@ -10,6 +10,7 @@ import {
   MatInputModule,
   MatListModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatToolbarModule,
 } from '@angular/material';
@@ -29,6 +30,7 @@ import {
     MatInputModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [],
 })
