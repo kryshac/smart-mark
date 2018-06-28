@@ -39,9 +39,17 @@ export const mutationCreateBookmark = gql`
   }
 `;
 
-export const deleteBookmark = gql`
+export const mutationDeleteBookmark = gql`
   mutation deleteBookmark($id: ID!) {
-    deleteBookmark(id: $id)
+    deleteBookmark(id: $id) {
+      id
+      title
+      url
+      icon
+      tags {
+        id
+      }
+    }
   }
 `;
 
