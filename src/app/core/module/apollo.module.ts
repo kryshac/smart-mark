@@ -9,6 +9,7 @@ import { setContext } from 'apollo-link-context';
 import { onError } from 'apollo-link-error';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
+import { environment } from 'environments/environment';
 
 @NgModule({
   exports: [HttpClientModule, ApolloModule, HttpLinkModule],
@@ -30,11 +31,11 @@ export class GraphQLModule {
     });
 
     const http = httpLink.create({
-      uri: 'http://0.0.0.0:8000/graphql',
+      uri: environment.host,
     });
 
     const ws = new WebSocketLink({
-      uri: `ws://0.0.0.0:8001/subscriptions`,
+      uri: environment.hostWs,
       options: {
         reconnect: false,
       },
