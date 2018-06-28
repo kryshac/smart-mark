@@ -29,12 +29,31 @@
       }
       .edit-container {
         color: #c388ff;
-        .mat-icon {
-          width: 16px;
-          height: 16px;
-          font-size: 16px;
+        .edit-button {
+          width: auto;
+          min-width: 1px;
+          padding: 2px;
+          border-radius: 50%;
+          line-height: 16px;
+          .mat-icon {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 14px;
+          }
+          .load-spiner {
+            position: absolute;
+            display: none;
+            top: -1px;
+            left: -1px;
+          }
         }
-        .mat-icon:last-child {
+        .edit-button.loading {
+          .load-spiner {
+            display: block;
+          }
+        }
+        .edit-button:last-child {
           margin-left: 5px;
         }
       }

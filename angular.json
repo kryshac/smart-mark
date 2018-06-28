@@ -71,6 +71,12 @@
                   "maximumWarning": "900kb"
                 }
               ]
+            },
+            "artur": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.artur.ts"
+              }]
             }
           }
         },
@@ -82,6 +88,9 @@
           "configurations": {
             "production": {
               "browserTarget": "smart-mark:build:production"
+            },
+            "artur": {
+              "browserTarget": "smart-mark:build:artur"
             }
           }
         },

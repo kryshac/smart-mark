@@ -17,6 +17,12 @@
       color: #09d2e5;
       box-shadow: 0 3px 16px rgba(29, 31, 46, 0.5);
     }
+    .add-bookmark-progress {
+      height: 2px;
+      opacity: 0.1;
+      position: absolute;
+      margin-top: 1px;
+    }
     .mat-card-content {
       margin: 0;
       padding: 15px;
