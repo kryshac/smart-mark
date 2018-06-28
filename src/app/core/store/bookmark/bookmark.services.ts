@@ -64,17 +64,22 @@ export class ServiceBookmark {
   //   });
   // }
 
-  // public delete(type: any): Observable<any> {
-  //   return new Observable((observer) => {
-  //     return this.apiService.deleteHttp({ url: `${ApiUrls.urlBookmark}/${type.id}` }).subscribe(
-  //       (response) => {
-  //         observer.next(response);
-  //         observer.complete();
-  //       },
-  //       (err) => {
-  //         observer.error(err);
-  //       },
-  //     );
-  //   });
-  // }
+  public delete(bookmark: Partial<IBookmark>): Observable<any> {
+    return new Observable((observer) => {
+      return this._apollo
+        .mutate({
+          mutation: GraphQl.mutationDeleteBookmark,
+          variables: { id: bookmark.id },
+        })
+        .subscribe(
+          (queryResult: ApolloQueryResult<{ deleteBookmark: IBookmark }>) => {
+            observer.next(queryResult.data.deleteBookmark);
+            observer.complete();
+          },
+          (err) => {
+            observer.error(err);
+          },
+        );
+    });
+  }
 }

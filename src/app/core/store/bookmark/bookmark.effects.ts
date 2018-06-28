@@ -46,16 +46,16 @@ export class EffectsBookmark {
   //   ),
   // );
 
-  // @Effect()
-  // public delete$: Observable<Action> = this._actions$.pipe(
-  //   ofType<actions.Remove>(actions.Actions.Remove),
-  //   map((action: actions.Remove) => action.payload),
-  //   switchMap((payload: IBookmark) =>
-  //     this._service.delete(payload).pipe(
-  //       map((response: '') => new actions.RemoveSuccess(payload)),
-  //       catchError((err: any) => of(new actions.RemoveFail(err))),
-  //     ),
-  //   ),
-  // );
+  @Effect()
+  public delete$: Observable<Action> = this._actions$.pipe(
+    ofType<actions.Remove>(actions.Actions.Remove),
+    map((action: actions.Remove) => action.payload),
+    switchMap((payload: IBookmark) =>
+      this._service.delete(payload).pipe(
+        map((response: IBookmark) => new actions.RemoveSuccess(response)),
+        catchError((err: any) => of(new actions.RemoveFail(err))),
+      ),
+    ),
+  );
   constructor(private _service: ServiceBookmark, private _actions$: Actions) {}
 }
