@@ -12,10 +12,10 @@ export class DialogAlertComponent {
   ) {}
 
   public acceptAction() {
-    this.dialogRef.close({ status: true });
+    this.dialogRef.close(true);
   }
 
   public cancelAction(): void {
-    this.dialogRef.close({ status: false });
+    this.dialogRef.close(false);
   }
 }
