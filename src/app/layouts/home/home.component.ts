@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  public trackByFn(index) {
-    return index;
+  public trackByFn(_, item: IBookmark) {
+    return item.id;
   }
 }
