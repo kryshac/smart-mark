@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { takeWhile, tap } from 'rxjs/operators';
 
@@ -14,6 +14,7 @@ import { Action, ActionsSubject, Store } from '@ngrx/store';
 export class AddBookmarkComponent {
   public form: FormGroup;
   public loading: boolean;
+  public tags: string[];
 
   constructor(
     public dialogRef: MatDialogRef<AddBookmarkComponent>,
@@ -25,8 +26,28 @@ export class AddBookmarkComponent {
     this.form = this.fb.group({
       title: this.fb.control('', [Validators.required]),
       url: this.fb.control('', [Validators.required]),
+      tag: this.fb.control(''),
+      tags: this.fb.array([]),
     });
     this.loading = false;
+    this.tags = [];
+  }
+
+  public addTag(event) {
+    event.preventDefault();
+
+    const input = this.form.get('tag');
+
+    if (input.value !== '') {
+      this.tags.push(input.value);
+      (this.form.get('tags') as FormArray).push(
+        this.fb.group({
+          title: input.value,
+          type: 'tag',
+        }),
+      );
+      input.setValue('');
+    }
   }
 
   public cancelAction(): void {
@@ -34,11 +55,15 @@ export class AddBookmarkComponent {
   }
 
   public addBookmark(): void {
-    const bookmark = this.form;
+    const {
+      valid,
+      value: { tag, ...rest },
+    } = this.form;
 
-    if (bookmark.valid) {
+    if (valid) {
+      const newBookmark = { ...rest };
+
       this.loading = true;
-      const newBookmark = { ...bookmark.value, tags: ['tag1', 'tag2'] };
       this.store.dispatch(new StoreBookmark.Add(newBookmark));
       this.actions
         .pipe(

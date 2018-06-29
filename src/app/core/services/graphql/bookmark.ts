@@ -34,6 +34,8 @@ export const mutationCreateBookmark = gql`
       icon
       tags {
         id
+        title
+        type
       }
     }
   }
@@ -84,6 +86,8 @@ export const subscriptionBookmarkCreated = gql`
       icon
       tags {
         id
+        title
+        type
       }
     }
   }

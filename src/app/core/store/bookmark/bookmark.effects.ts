@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
 import { Action } from '@ngrx/store';
 
-import { IBookmark, INewBookmark } from '@app/shared/models';
+import { IBookmark, INewBookmark, ITag } from '@app/shared/models';
+import * as actionsTag from '../tag/tag.actions';
 import * as actions from './bookmark.actions';
 import { ServiceBookmark } from './bookmark.services';
 
@@ -28,10 +29,25 @@ export class EffectsBookmark {
     map((action: actions.Add) => action.payload),
     switchMap((payload: INewBookmark) =>
       this._service.add(payload).pipe(
-        map((respones: IBookmark) => new actions.AddSuccess(respones)),
+        tap(),
+        mergeMap((response: IBookmark) => [
+          new actionsTag.AddUpdateMultiple(response.tags as ITag[]),
+          new actions.AddSuccess({
+            ...response,
+            tags: (response.tags as ITag[]).map(({ id }) => id),
+          }),
+        ]),
+        // map((respones: IBookmark) => new actions.AddSuccess(respones)),
         catchError((err: any) => of(new actions.AddFail(err))),
       ),
     ),
+  );
+
+  @Effect()
+  public subscriptionAdd$: Observable<Action> = this._actions$.pipe(
+    ofType<actions.SubscriptionAdd>(actions.Actions.SubscriptionAdd),
+    map((action: actions.SubscriptionAdd) => action.payload),
+    map((response: IBookmark) => new actionsTag.AddUpdateMultiple(response.tags as ITag[])),
   );
 
   // @Effect()

@@ -75,6 +75,12 @@ export function reducerTag(state = initialState, action: actions.ActionsUnion): 
       });
     }
 
+    case actions.Actions.AddUpdateMultiple: {
+      return todoAdapter.upsertMany(action.payload, {
+        ...state,
+      });
+    }
+
     default: {
       return state;
     }

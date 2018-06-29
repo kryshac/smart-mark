@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+
+import { Md5 } from 'ts-md5/dist/md5';
 
 import * as GraphQl from '@app/core/services/graphql';
 import { IState } from '@app/core/store';
@@ -30,13 +32,27 @@ export class HomeComponent implements OnInit {
       this._store.select(StoreBookmark.selectBookmarkAll),
       this._store.select(StoreTag.selectTagEntities),
     ).pipe(
+      tap((data: any) => console.log(JSON.parse(JSON.stringify(data)))),
+      // tap((combine: [IBookmark[], Dictionary<ITag>]) => {
+      //   const test = combine[0].map((bookmark: IBookmark) => ({
+      //     ...bookmark,
+      //     tags: (bookmark.tags as ITag[])
+      //       .map(({ id }) => combine[1][id])
+      //       .filter((tag: ITag | undefined) => tag !== undefined),
+      //   }));
+      //   console.log(test);
+      // }),
       map((combine: [IBookmark[], Dictionary<ITag>]) =>
         combine[0].map((bookmark: IBookmark) => ({
           ...bookmark,
-          tags: (bookmark.tags as ITag[]).map(({ id }) => combine[1][id]),
+          tags: (bookmark.tags as ITag[])
+            .map(({ id }) => combine[1][id])
+            .filter((tag: ITag | undefined) => tag !== undefined),
         })),
       ),
     );
+
+    this.bookmarks$.subscribe((data) => console.log(data));
 
     this._apollo
       .subscribe({
@@ -48,6 +64,6 @@ export class HomeComponent implements OnInit {
   }
 
   public trackByFn(_, item: IBookmark) {
-    return item.id;
+    return Md5.hashStr(JSON.stringify(item));
   }
 }
