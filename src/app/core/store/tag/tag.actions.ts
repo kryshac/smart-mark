@@ -15,6 +15,7 @@ export enum Actions {
   Update = '[Tag] Update',
   UpdateSuccess = '[Tag] Update Success',
   UpdateFail = '[Tag] Update Fail',
+  AddUpdateMultiple = '[Tag] Add or Update multiple',
   SubscriptionAdd = '[Tag] Subscription Add',
   SubscriptionRemove = '[Tag] Subscription Remove',
 }
@@ -89,6 +90,12 @@ export class UpdateFail implements Action {
   constructor(public payload?: any) {}
 }
 
+export class AddUpdateMultiple implements Action {
+  public readonly type = Actions.AddUpdateMultiple;
+
+  constructor(public payload: ITag[]) {}
+}
+
 export class SubscriptionAdd implements Action {
   public readonly type = Actions.SubscriptionAdd;
 
@@ -111,6 +118,7 @@ export type ActionsUnion =
   | Update
   | UpdateSuccess
   | UpdateFail
+  | AddUpdateMultiple
   | Load
   | LoadSuccess
   | LoadFail

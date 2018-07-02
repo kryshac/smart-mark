@@ -1,11 +1,18 @@
 <div class="navbar-column">
   <mat-form-field class="navbar-search-tag" color="accent">
-    <input matInput placeholder="Search tag">
+    <input #search matInput (input)="searchTag(search.value)" placeholder="Search tag">
   </mat-form-field>
   <mat-chip-list>
-    <ng-container *ngIf="tags$ | async as tags">
+    <ng-container *ngIf="tagsSelected$ | async as tags">
       <ng-container *ngFor="let tag of tags">
-        <mat-chip>{{ tag.title }}</mat-chip>
+        <mat-chip (click)="removeTagToFilter(tag.id)">{{ tag.title }} x</mat-chip>
+      </ng-container>
+    </ng-container>
+  </mat-chip-list>
+  <mat-chip-list>
+    <ng-container *ngIf="tagsNotSelected$ | async as tags">
+      <ng-container *ngFor="let tag of tags">
+        <mat-chip (click)="addTagToFilter(tag.id)">{{ tag.title }}</mat-chip>
       </ng-container>
     </ng-container>
   </mat-chip-list>
