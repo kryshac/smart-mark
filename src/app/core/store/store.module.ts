@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { FilterCoreModule } from '@app/core/store/filter/filter.module';
 import { TagCoreModule } from '@app/core/store/tag/tag.module';
 import { metaReducers, reducers } from './';
 import { BookmarkCoreModule } from './bookmark/bookmark.module';
@@ -29,6 +30,7 @@ export class StoreCoreModule {
     StoreModule.forRoot(reducers, { metaReducers }),
     BookmarkCoreModule.forRoot(),
     TagCoreModule.forRoot(),
+    FilterCoreModule.forRoot(),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       logOnly: true,
