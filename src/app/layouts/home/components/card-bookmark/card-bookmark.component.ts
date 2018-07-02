@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButton, MatDialog } from '@angular/material';
 
 import { Store } from '@ngrx/store';
@@ -14,14 +14,11 @@ import { cardBookmarkAnimation } from './card-bookmark.animation';
   templateUrl: './card-bookmark.component.html',
   animations: [cardBookmarkAnimation],
 })
-export class CardBookmarkComponent implements OnInit {
+export class CardBookmarkComponent {
   @Input() public bookmark: IBookmark;
 
   constructor(private store: Store<IState>, private dialog: MatDialog) {}
 
-  public ngOnInit(): void {
-    console.log(this.bookmark);
-  }
   public removeBookmark(id: string, button: MatButton): void {
     const dialogRef = this.dialog.open(DialogAlertComponent, {
       width: '500px',
