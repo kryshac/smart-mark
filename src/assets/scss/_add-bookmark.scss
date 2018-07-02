@@ -5,12 +5,14 @@
   overflow: hidden !important;
 }
 
-.add-bookmark {
+.add__bookmark {
   background-color: #2f2e4a;
-  .add-bookmark-card {
+  .mat-card {
+    padding: 0;
+  }
+  &__card {
     background-color: #2f2e4a;
     color: #fff;
-    padding: 0;
     .mat-card-header {
       padding: 14px;
       background-color: #323153;
@@ -30,6 +32,31 @@
     .mat-card-actions {
       margin: 0;
       padding: 15px;
+    }
+  }
+  .bookmark__tags {
+    padding: 10px 10px 0;
+    border: 1px solid #20212e;
+    border-radius: 17px;
+    &__container {
+      color: #fff;
+      .new__tag {
+        padding: 7px 14px;
+        line-height: 13px;
+        background-color: transparent;
+        color: #8276bb;
+        border: 1px solid #4f4483;
+        margin-bottom: 10px;
+        border-radius: 24px;
+        text-align: center;
+      }
+    }
+    &__input {
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+      color: #fff;
+      margin-bottom: 10px;
     }
   }
 }
