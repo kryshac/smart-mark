@@ -60,3 +60,13 @@
     }
   }
 }
+
+.add__bookmark::after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 30px);
+  height: 10px;
+  background: red;
+  top: -10px;
+  z-index: 99999;
+}
