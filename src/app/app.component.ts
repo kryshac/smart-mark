@@ -12,5 +12,11 @@ export class AppComponent {
     .observe(Breakpoints.Handset)
     .pipe(map((result: BreakpointState) => result.matches));
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) {
+    localStorage.setItem(
+      'token',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMzBhMzY0ZGIwZTE3NGMwMjUzZDFmMyIsImlhdCI6M\
+TUzMDI2MzM0MH0.RDjaZNnOZ01PGuQnnS6Lbd56D_78bv-n-hUu0mVJ_5I',
+    );
+  }
 }

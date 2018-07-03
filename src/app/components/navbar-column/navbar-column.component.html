@@ -1,19 +1,27 @@
 <div class="navbar-column">
-  <mat-form-field class="navbar-search-tag" color="accent">
+  <mat-form-field class="navbar-search-tag">
     <input #search matInput (input)="searchTag(search.value)" placeholder="Search tag">
   </mat-form-field>
-  <mat-chip-list>
-    <ng-container *ngIf="tagsSelected$ | async as tags">
-      <ng-container *ngFor="let tag of tags">
-        <mat-chip (click)="removeTagToFilter(tag.id)">{{ tag.title }} x</mat-chip>
-      </ng-container>
-    </ng-container>
-  </mat-chip-list>
-  <mat-chip-list>
-    <ng-container *ngIf="tagsNotSelected$ | async as tags">
-      <ng-container *ngFor="let tag of tags">
-        <mat-chip (click)="addTagToFilter(tag.id)">{{ tag.title }}</mat-chip>
-      </ng-container>
-    </ng-container>
-  </mat-chip-list>
+  <ng-container *ngIf="tagsSelected$ | async as tags">
+    <div *ngIf="tags.length" class="tag__selected">
+      <mat-chip-list>
+        <div [@tagAnimation]="tags.length">
+          <ng-container *ngFor="let tag of tags;trackBy: trackByFn">
+            <mat-chip @fade (click)="removeTagToFilter(tag.id)">{{ tag.title }}
+              <mat-icon>close</mat-icon>
+            </mat-chip>
+          </ng-container>
+        </div>
+      </mat-chip-list>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="tagsNotSelected$ | async as tags">
+    <mat-chip-list>
+      <div [@tagAnimation]="tags.length">
+        <ng-container *ngFor="let tag of tags;trackBy: trackByFn">
+          <mat-chip @fade (click)="addTagToFilter(tag.id)">{{ tag.title }}</mat-chip>
+        </ng-container>
+      </div>
+    </mat-chip-list>
+  </ng-container>
 </div>

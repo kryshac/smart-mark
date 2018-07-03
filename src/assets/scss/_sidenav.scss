@@ -8,15 +8,44 @@
     .navbar-column {
       color: #fff;
       padding: 10px;
-      .navbar-search-tag {
-        width: 100%;
-      }
       .mat-chip {
         background-color: #4f4483;
         color: #fff;
-        padding: 7px 14px;
-        line-height: 13px;
+        padding: 5px 14px;
+        line-height: 12px;
         border: 1px solid #4f4483;
+      }
+      .tag__selected {
+        position: relative;
+        margin-top: 5px;
+        margin-bottom: 27px;
+        padding-bottom: 27px;
+        .mat-chip {
+          background-color: #6b5bf0;
+          border: 1px solid #6b5bf0;
+          padding: 1px 10px;
+          .mat-icon {
+            border-radius: 50%;
+            background-color: #4f4483;
+            width: 12px;
+            height: 12px;
+            font-size: 12px;
+            padding: 4px;
+            margin-left: 5px;
+            margin-right: -8px;
+          }
+        }
+      }
+      .tag__selected::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #4f4483;
+      }
+      .navbar-search-tag {
+        width: 100%;
       }
     }
   }
