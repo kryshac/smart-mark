@@ -1,0 +1,22 @@
+.mat-dialog-container {
+  position: relative;
+  overflow: initial !important;
+  padding: 0 !important;
+  background-color: transparent;
+
+  &::before {
+    position: absolute;
+    top: -10px;
+    left: 11px;
+    width: calc(100% - 22px);
+    height: 20px;
+    background-color: #2c2b46;
+    border-radius: 4px;
+    box-shadow: 1px 2px 35px rgba(7, 7, 7, 0.65); // z-index: -1;
+    content: '';
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background-color: rgba(20, 5, 34, 0.7);
+}

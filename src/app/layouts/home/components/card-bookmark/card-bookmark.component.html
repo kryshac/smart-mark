@@ -1,20 +1,14 @@
 <mat-card @slideIn class="card-bookmark">
   <mat-card-header fxLayout="row">
-    <img mat-card-avatar [src]="bookmark.icon" class="card-bookmark-icon">
+    <img mat-card-avatar [src]="bookmark.icon" class="card-bookmark-icon" alt="Logo Bookmark">
     <div class="card-bookmark-title">{{ bookmark.url }}</div>
     <div fxFlex></div>
     <div class="edit-container">
       <button mat-button class="edit-button">
         <mat-icon>edit</mat-icon>
-        <div class="load-spiner">
-          <mat-spinner diameter="22"></mat-spinner>
-        </div>
       </button>
-      <button #button (click)="removeBookmark(bookmark.id, button)" mat-button class="edit-button">
+      <button (click)="removeBookmark(bookmark.id)" mat-button class="edit-button">
         <mat-icon>delete</mat-icon>
-        <div class="load-spiner">
-          <mat-spinner diameter="22"></mat-spinner>
-        </div>
       </button>
     </div>
   </mat-card-header>

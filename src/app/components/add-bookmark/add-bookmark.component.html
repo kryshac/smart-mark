@@ -1,33 +1,26 @@
 <div class="add__bookmark">
-  <mat-card class="add__bookmark__card">
+  <div class="add__bookmark__card">
     <form [formGroup]="form" (ngSubmit)="addBookmark()">
-      <mat-card-header fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon fxLayoutGap>note_add</mat-icon>
-        <div fxLayoutGap fxFlexOffset="20px" class="add-bookmark-title">Add Bookmark</div>
-      </mat-card-header>
-      <mat-progress-bar *ngIf="loading" class="add-bookmark-progress" mode="indeterminate"></mat-progress-bar>
-      <mat-card-content fxLayout="column">
-        <mat-form-field fxFlex>
-          <input matInput placeholder="Title" formControlName="title">
-        </mat-form-field>
-        <mat-form-field fxFlex>
-          <input matInput placeholder="Url" formControlName="url">
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Url" formControlName="url">
+      </mat-form-field>
 
-        <div class="bookmark__tags">
-          <div fxLayout="row wrap" fxLayoutGap="10px" class="bookmark__tags__container">
-            <ng-container *ngFor="let tag of tags">
-              <div fxFlex fxFlexAlign="center" class="new__tag">{{ tag }}</div>
-            </ng-container>
-            <input fxFlex="auto" class="bookmark__tags__input" type="text" placeholder="Add tag" formControlName="tag"
-              (keydown.enter)="addTag($event)">
-          </div>
+      <div class="bookmark__tags">
+        <div fxLayout="row wrap" fxLayoutGap="10px" class="bookmark__tags__container">
+          <ng-container *ngFor="let tag of tags">
+            <div fxFlex fxFlexAlign="center" class="new__tag">{{ tag }}</div>
+          </ng-container>
+          <input fxFlex="auto" class="bookmark__tags__input" type="text" placeholder="Add tag" formControlName="tag"
+            (keydown.enter)="addTag($event)">
         </div>
-      </mat-card-content>
-      <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center">
         <button type="button" mat-button (click)="cancelAction()">No Thanks</button>
         <button type="submit" mat-button>Ok</button>
-      </mat-card-actions>
+      </div>
     </form>
-  </mat-card>
+  </div>
 </div>

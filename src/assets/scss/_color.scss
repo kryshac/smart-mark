@@ -1,0 +1,20 @@
+body {
+  .color {
+    &--primary {
+      border: 1px solid #7863f9;
+      background-color: #3e7199;
+      background-image: linear-gradient(42deg, #9b53f3 0%, #7167fa 100%);
+      color: #fff;
+    }
+
+    &--warning {
+      background-color: #e02954;
+      color: #fff;
+    }
+
+    &--simple {
+      border: 1px solid #9755f4;
+      color: #8b88c8;
+    }
+  }
+}
