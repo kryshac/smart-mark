@@ -1,6 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { takeWhile, tap } from 'rxjs/operators';
 
 import { IState } from '@app/core/store';
@@ -12,13 +11,11 @@ import { Action, ActionsSubject, Store } from '@ngrx/store';
   templateUrl: './add-bookmark.component.html',
 })
 export class AddBookmarkComponent {
+  @Output() public action = new EventEmitter<string>();
   public form: FormGroup;
-  public loading: boolean;
   public tags: string[];
 
   constructor(
-    public dialogRef: MatDialogRef<AddBookmarkComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private store: Store<IState>,
     private actions: ActionsSubject,
@@ -29,7 +26,6 @@ export class AddBookmarkComponent {
       tag: this.fb.control(''),
       tags: this.fb.array([]),
     });
-    this.loading = false;
     this.tags = [];
   }
 
@@ -51,7 +47,7 @@ export class AddBookmarkComponent {
   }
 
   public cancelAction(): void {
-    this.dialogRef.close();
+    this.action.emit('close');
   }
 
   public addBookmark(): void {
@@ -63,13 +59,13 @@ export class AddBookmarkComponent {
     if (valid) {
       const newBookmark = { ...rest };
 
-      this.loading = true;
+      this.action.emit('startAnimation');
       this.store.dispatch(new StoreBookmark.Add(newBookmark));
       this.actions
         .pipe(
           tap((action: Action) => {
             if (action.type === StoreBookmark.Actions.AddSuccess) {
-              this.dialogRef.close();
+              this.action.emit('close');
             }
           }),
           takeWhile((action: Action) => action.type !== StoreBookmark.Actions.AddSuccess),
