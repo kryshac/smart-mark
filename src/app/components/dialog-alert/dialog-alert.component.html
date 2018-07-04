@@ -1,7 +1,21 @@
-<div>
-  <div>Title</div>
-  <div fxLayout="row" fxLayoutGap="10px">
-    <button (click)="cancelAction()" fxFlex mat-raised-button color="warn">Cancel</button>
-    <button (click)="acceptAction()" fxFlex mat-raised-button color="primary">Accent</button>
+<div class="dialog__alert">
+  <div class="dialog__alert__loading">
+    <div *ngIf="state === 'active'" [@loadingRage]="state" class="loading__race"></div>
+    <div [@loading]="state" (@loading.done)="loopAnimation()" class="loading__tab"></div>
+  </div>
+  <div class="dialog__alert__header">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="dialog__alert__content">
+    <ng-container [ngSwitch]="type">
+      <app-add-bookmark *ngSwitchCase="'add'" (action)="componentAction($event)"></app-add-bookmark>
+      <app-remove-bookmark *ngSwitchCase="'remove'" [data]="dataComponent" (action)="componentAction($event)"></app-remove-bookmark>
+      <ng-container *ngSwitchDefault>
+        <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center center">
+          <button class="color--primary" (click)="cancelAction()" fxFlex="137px" mat-raised-button>Cancel</button>
+          <button class="color--warning" (click)="acceptAction()" fxFlex="137px" mat-raised-button>Delete</button>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
