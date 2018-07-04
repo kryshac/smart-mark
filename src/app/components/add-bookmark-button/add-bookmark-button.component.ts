@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { AddBookmarkComponent } from '@app/components/add-bookmark/add-bookmark.component';
+import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 
 @Component({
   selector: 'app-add-bookmark-button',
@@ -11,8 +11,12 @@ export class AddBookmarkButtonComponent {
   constructor(public dialog: MatDialog) {}
 
   public addBookmark(): void {
-    this.dialog.open(AddBookmarkComponent, {
+    this.dialog.open(DialogAlertComponent, {
       width: '500px',
+      data: {
+        title: 'Add bookmark',
+        type: 'add',
+      },
     });
   }
 }
