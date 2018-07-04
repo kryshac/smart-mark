@@ -22,6 +22,6 @@ import { RemoveBookmarkComponent } from './components/remove-bookmark/remove-boo
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddBookmarkComponent, DialogAlertComponent],
+  entryComponents: [DialogAlertComponent],
 })
 export class AppModule {}
