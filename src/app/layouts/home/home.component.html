@@ -1,8 +1,27 @@
-<ng-container *ngIf="bookmarks$ | async as bookmarks">
-  <div [@listAnimation]="bookmarks.length" fxLayout="row wrap" fxLayoutAlign="center">
-    <ng-container *ngFor="let bookmark of bookmarks;trackBy: trackByFn">
-      <!-- {{ bookmark | json }} -->
-      <app-card-bookmark class="card-bookmark" [bookmark]="bookmark"></app-card-bookmark>
+<div class="home">
+  <div fxLayout="row" fxLayoutAling="start center" class="home__bar">
+    <div fxFlexAlign="center">
+      <button class="home__bar__button active" mat-button>
+        <img src="assets/img/view_grid.png" alt="View grid">
+      </button>
+      <button class="home__bar__button" mat-button>
+        <img src="assets/img/view_list.png" alt="View list">
+      </button>
+    </div>
+    <div fxFlexAlign="center">
+      <button class="home__bar__button__text active" mat-button>All</button>
+      <button class="home__bar__button__text" mat-button>Date</button>
+      <button class="home__bar__button__text" mat-button>Title</button>
+      <button class="home__bar__button__text" mat-button>Viewed</button>
+    </div>
+  </div>
+  <div class="home__container">
+    <ng-container *ngIf="bookmarks$ | async as bookmarks">
+      <div [@listAnimation]="bookmarks.length" fxLayout="row wrap" fxLayoutAlign="center">
+        <ng-container *ngFor="let bookmark of bookmarks;trackBy: trackByFn">
+          <app-card-bookmark class="card-bookmark" [bookmark]="bookmark"></app-card-bookmark>
+        </ng-container>
+      </div>
     </ng-container>
   </div>
-</ng-container>
+</div>
