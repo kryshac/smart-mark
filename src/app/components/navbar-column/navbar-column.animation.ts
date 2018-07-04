@@ -12,10 +12,7 @@ import {
 export const tagAnimation = [
   trigger('fade', [
     transition(':enter', [
-      sequence([
-        style({ opacity: '1', transform: 'translateX(+50%)' }),
-        animate('200ms ease-in', style({ opacity: '1', transform: 'translateX(0)' })),
-      ]),
+      sequence([style({ opacity: '0.3' }), animate('200ms ease-in', style({ opacity: '1' }))]),
     ]),
   ]),
   trigger('tagAnimation', [

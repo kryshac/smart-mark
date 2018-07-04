@@ -7,7 +7,7 @@
     background-color: #342f5b;
     .navbar-column {
       color: #fff;
-      padding: 10px;
+      padding: 11px 25px;
       .mat-chip {
         background-color: #4f4483;
         color: #fff;
@@ -20,6 +20,7 @@
         margin-top: 5px;
         margin-bottom: 27px;
         padding-bottom: 27px;
+        transition: flex 0.3s ease-out;
         .mat-chip {
           background-color: #6b5bf0;
           border: 1px solid #6b5bf0;
@@ -51,8 +52,5 @@
   }
   .navbar {
     height: 75px;
-  }
-  .contaier {
-    padding: 20px;
   }
 }
