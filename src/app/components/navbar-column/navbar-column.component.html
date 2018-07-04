@@ -1,14 +1,14 @@
 <div class="navbar-column">
   <mat-form-field class="navbar-search-tag">
-    <input #search matInput (input)="searchTag(search.value)" placeholder="Search tag">
+    <input #search matInput (input)="searchTag(search.value)" placeholder="Find Tag">
   </mat-form-field>
   <ng-container *ngIf="tagsSelected$ | async as tags">
     <div *ngIf="tags.length" class="tag__selected">
       <mat-chip-list>
         <div [@tagAnimation]="tags.length">
           <ng-container *ngFor="let tag of tags;trackBy: trackByFn">
-            <mat-chip @fade (click)="removeTagToFilter(tag.id)">{{ tag.title }}
-              <mat-icon>close</mat-icon>
+            <mat-chip @fade>{{ tag.title }}
+              <mat-icon (click)="removeTagToFilter(tag.id)">close</mat-icon>
             </mat-chip>
           </ng-container>
         </div>

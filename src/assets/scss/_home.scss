@@ -1,0 +1,42 @@
+.home {
+  &__bar {
+    width: 100%;
+    height: 78px;
+    padding-left: 30px;
+    background-color: #24253c;
+    box-shadow: inset 0 5px 19px 0 rgba(7, 7, 21, 0.19);
+    & &__button {
+      width: 37px;
+      height: 37px;
+      padding: 0;
+      min-width: 1px;
+      border: 1px solid #9755f4;
+      margin-right: 15px;
+      border-radius: 4px;
+      color: #8b88c8;
+    }
+    &__button:last-child {
+      margin-right: 30px;
+    }
+    &__button.active {
+      background-image: linear-gradient(42deg, #9b53f3 0%, #7167fa 100%);
+      border: 1px solid #7863f9;
+      color: #fff;
+    }
+    & &__button__text {
+      border: 1px solid #9755f4;
+      min-width: 62px;
+      margin-right: 15px;
+      border-radius: 4px;
+      color: #8b88c8;
+    }
+    &__button__text.active {
+      background-image: linear-gradient(42deg, #9b53f3 0%, #7167fa 100%);
+      border: 1px solid #7863f9;
+      color: #fff;
+    }
+  }
+  &__container {
+    padding: 20px;
+  }
+}
