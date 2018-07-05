@@ -12,7 +12,7 @@ export class DialogAlertComponent {
   public type: string;
   public dataComponent: any;
   public state: string;
-  private animation: boolean;
+  public animation: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAlertComponent>,

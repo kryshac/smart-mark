@@ -2,15 +2,12 @@
   height: 100%;
   background-color: #1d1f2e;
   color: #fff;
-
   .sidenav {
     width: 250px;
     background-color: #342f5b;
-
     .navbar-column {
       padding: 11px 25px;
       color: #fff;
-
       .mat-chip {
         padding: 5px 14px;
         border: 1px solid #4f4483;
@@ -18,19 +15,16 @@
         color: #fff;
         line-height: 12px;
       }
-
       .tag__selected {
         position: relative;
         padding-bottom: 27px;
         margin-top: 5px;
         margin-bottom: 27px;
         transition: flex 0.3s ease-out;
-
         .mat-chip {
           padding: 1px 10px;
           border: 1px solid #6b5bf0;
           background-color: #6b5bf0;
-
           .mat-icon {
             width: 12px;
             height: 12px;
@@ -43,7 +37,6 @@
           }
         }
       }
-
       .tag__selected::before {
         position: absolute;
         bottom: 0;
@@ -52,14 +45,24 @@
         background-color: #4f4483;
         content: '';
       }
-
       .navbar-search-tag {
         width: 100%;
       }
     }
   }
-
   .navbar {
     height: 75px;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: #09d2e5;
+  }
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: #8276bb;
+  }
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #8276bb;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: #c1c1c1;
   }
 }
