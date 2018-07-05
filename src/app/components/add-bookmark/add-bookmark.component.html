@@ -1,26 +1,35 @@
 <div class="add__bookmark">
-  <div class="add__bookmark__card">
-    <form [formGroup]="form" (ngSubmit)="addBookmark()">
+  <form [formGroup]="form" (ngSubmit)="addBookmark()">
+    <div class="add__bookmark__form" fxLayout="column">
       <mat-form-field>
         <input matInput placeholder="Title" formControlName="title">
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Url" formControlName="url">
       </mat-form-field>
-
       <div class="bookmark__tags">
+        <div #inputTagLabel [@label]="focusLabel" [ngClass]="{'bookmark__tags__label--focus': focusLabel === 'focus'}"
+          class="bookmark__tags__label">Add tag</div>
         <div fxLayout="row wrap" fxLayoutGap="10px" class="bookmark__tags__container">
-          <ng-container *ngFor="let tag of tags">
-            <div fxFlex fxFlexAlign="center" class="new__tag">{{ tag }}</div>
+          <ng-container *ngFor="let tag of tags; let i = index">
+            <!-- <div class="new__tag">{{ tag }}
+              <mat-icon>close</mat-icon>
+            </div> -->
+            <mat-chip>{{ tag }}
+              <mat-icon (click)="removeTag(i)">close</mat-icon>
+            </mat-chip>
           </ng-container>
-          <input fxFlex="auto" class="bookmark__tags__input" type="text" placeholder="Add tag" formControlName="tag"
-            (keydown.enter)="addTag($event)">
+          <input #inputTag fxFill class="bookmark__tags__input" type="text" placeholder="" (focus)="focusTag()"
+            (focusout)="focusoutTag(inputTag.value)" (keydown.enter)="addTag($event, inputTag)">
+        </div>
+        <div [ngClass]="{'bookmark__tags__underline--focus': focus === 'focus'}" class="bookmark__tags__underline">
+          <div [@ripple]="focus" class="underline__ripple"></div>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="end center">
-        <button type="button" mat-button (click)="cancelAction()">No Thanks</button>
-        <button type="submit" mat-button>Ok</button>
+      <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
+        <button class="color--warning" (click)="cancelAction()" fxFlex="137px" mat-raised-button>Discard</button>
+        <button class="color--primary" fxFlex="137px" mat-raised-button>Save</button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
