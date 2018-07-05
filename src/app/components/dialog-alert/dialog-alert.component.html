@@ -1,6 +1,6 @@
 <div class="dialog__alert">
   <div class="dialog__alert__loading">
-    <div *ngIf="state === 'active'" [@loadingRage]="state" class="loading__race"></div>
+    <div *ngIf="animation" [@loadingRage]="state" class="loading__race"></div>
     <div [@loading]="state" (@loading.done)="loopAnimation()" class="loading__tab"></div>
   </div>
   <div class="dialog__alert__header">
